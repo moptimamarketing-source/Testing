@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komuniti Copywriting Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: #f8f9ff;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .controls button:hover {
+            background: #764ba2;
+        }
+
+        .controls button.active {
+            background: #764ba2;
+        }
+
+        .controls select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .group-section {
+            margin-bottom: 40px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            background: #f8f9ff;
+        }
+
+        .group-title {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .post-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .post-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .post-meta {
+            font-size: 0.9em;
+            color: #666;
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        .post-content {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-copy {
+            padding: 8px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .btn-copy:hover {
+            background: #218838;
+        }
+
+        .btn-edit {
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .btn-edit:hover {
+            background: #0056b3;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: black;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .controls {
+                display: none;
+            }
+            .post-actions {
+                display: none;
+            }
+        }
+
+        .copy-success {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 2000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Komuniti Copywriting Dashboard</h1>
+            <p>40 Posts - Fully Editable & Ready to Use</p>
+        </header>
+
+        <div class="controls">
+            <button onclick="showAll()">📋 Semua</button>
+            <button onclick="filterGroup('referral')">🔗 REFERRAL</button>
+            <button onclick="filterGroup('info')">ℹ️ INFO</button>
+            <button onclick="filterGroup('creative')">🎨 CREATIVE</button>
+            <button onclick="window.print()">🖨️ Print</button>
+            <button onclick="downloadAll()">⬇️ Download</button>
+        </div>
+
+        <div class="content">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">40</div>
+                    <div class="stat-label">Total Posts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">16</div>
+                    <div class="stat-label">REFERRAL Posts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">INFO Posts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">CREATIVE Posts</div>
+                </div>
+            </div>
+
+            <!-- REFERRAL GROUP -->
+            <div class="group-section" id="group-referral">
+                <div class="group-title">🔗 REFERRAL GROUP (16 Posts)</div>
+
+                <!-- MONDAY Posts -->
+                <h3 style="margin-top: 20px; margin-bottom: 15px; color: #667eea;">📅 MONDAY - Program/How-To (4 posts)</h3>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 1: Bagaimana Cara Referral</div>
+                        <div class="post-meta">MON 10AM</div>
+                    </div>
+                    <div class="post-content">🔗 BAGAIMANA CARA REFERRAL MINDA OPTIMA?
+
+Senang je sebenarnya.
+
+STEP 1: REGISTER
+Go to: referral.mindaoptima.com
+Daftar dengan info kau.
+Dah dapat link referral unik.
+
+STEP 2: SHARE
+Share link dengan kawan.
+Text je: "Eh ada kelas bagus, minat tak?"
+Simple saja.
+
+STEP 3: KAWAN DAFTAR + ATTEND
+Kawan register pakai link kau.
+Kawan attend 1 kelas.
+
+STEP 4: DAPAT RM100 TnG
+3-5 hari kemudian, dah dapat reward.
+
+That's it! 💰
+
+Sudah clear? Mula je. 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 2: Referral Checklist</div>
+                        <div class="post-meta">MON 10AM</div>
+                    </div>
+                    <div class="post-content">🔗 CHECKLIST SEBELUM MULAI REFER
+
+Pastikan:
+
+☑️ Sudah register jadi referral partner
+☑️ Dapat referral link unik
+☑️ Paham program rules
+☑️ Tahu berapa reward (RM100 TnG)
+☑️ Ready share dengan kawan
+
+Ready?
+
+Identify 3 kawan hari ni.
+Reach out besok.
+
+Go! 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 3: Referral FAQ</div>
+                        <div class="post-meta">MON 10AM</div>
+                    </div>
+                    <div class="post-content">🔗 JAWAPAN SOALAN-SOALAN LAZIM
+
+Q: Berapa lama dapat reward?
+A: 3-5 hari kerja selepas attendance.
+
+Q: Berapa reward per referral?
+A: RM100 TnG (sampai 31 Dec). Lepas tu RM50.
+
+Q: Boleh refer berapa kali?
+A: Unlimited. Semakin banyak, semakin ramai dapat.
+
+Q: Apa kalau kawan xdatang kelas?
+A: Xpayah bayar. Kawan mesti attend kelas.
+
+Q: Boleh withdraw bila?
+A: Anytime. Via TnG atau bank transfer.
+
+Lagi soalan? Ask away! 👇</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 4: Reward System</div>
+                        <div class="post-meta">MON 10AM</div>
+                    </div>
+                    <div class="post-content">🔗 SISTEM REWARD EXPLAINED
+
+🎯 BASIC:
+RM100 per referral (kalau attend class)
+Unlimited referrals
+Automatic processing
+
+💰 HOW MUCH CAN YOU EARN:
+1 referral = RM100
+5 referrals = RM500
+10 referrals = RM1000
+
+📅 TIMELINE:
+Day 1: Referral attend class
+Day 3-5: Dah dapat RM100
+
+💳 WITHDRAW:
+Via TnG (instant)
+Via bank transfer (1-2 days)
+
+SIMPLE? Start referring! 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <!-- WEDNESDAY Posts -->
+                <h3 style="margin-top: 25px; margin-bottom: 15px; color: #667eea;">📅 WEDNESDAY - Tips/Strategy (4 posts)</h3>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Tip #1: Target Siapa</div>
+                        <div class="post-meta">WED 2PM</div>
+                    </div>
+                    <div class="post-content">💡 TIP #1: TARGET ORANG YANG TEPAT
+
+Jangan refer orang random.
+
+Target:
+✅ Parents dengan kids
+✅ Orang yang ada budget
+✅ Teman dekat sendiri
+
+Kenapa? Mereka sudah interested.
+
+ACTION:
+List 5 orang hari ni yang fit.
+Message mereka minggu ni.
+
+Go! 🎯</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Tip #2: Apa Nak Say</div>
+                        <div class="post-meta">WED 2PM</div>
+                    </div>
+                    <div class="post-content">💡 TIP #2: BAGAIMANA NAK PITCH?
+
+Jangan: "Join Minda Optima dapat RM100!"
+Jangan: Hard sell.
+
+Better:
+"Eh, anak kau ada interest coding ke? Ada kelas bagus kat Minda Optima."
+
+Atau:
+"Kids bosan kat rumah ke? Ada online class yang seru."
+
+Keep it natural. Friend to friend.
+
+Not salesman vibes. 🙌</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Tip #3: Follow-Up Strategy</div>
+                        <div class="post-meta">WED 2PM</div>
+                    </div>
+                    <div class="post-content">💡 TIP #3: FOLLOW-UP IS KEY
+
+1 message = 20% chance convert.
+3 follow-up = 60% chance convert.
+
+Don't give up!
+
+Timeline:
+Day 1: First message
+Day 3: "Eh dapat message kemarin?"
+Day 7: Share 1 benefit
+Day 14: Final message
+
+Rejection ≠ Forever No.
+It's "not now" → "maybe later"
+
+Keep trying! 💪</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Tip #4: Handle Rejection</div>
+                        <div class="post-meta">WED 2PM</div>
+                    </div>
+                    <div class="post-content">💡 TIP #4: REJECTION IS NORMAL
+
+Successful referrers kena reject BANYAK.
+
+Why? Because they TRY MORE.
+
+0 rejection = 0 referral
+10 tries = 3 referral = RM300
+
+Math is simple.
+
+Don't give up, keep trying! 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <!-- FRIDAY Posts -->
+                <h3 style="margin-top: 25px; margin-bottom: 15px; color: #667eea;">📅 FRIDAY - Success/Motivation (4 posts)</h3>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Story #1: Ahmad Success</div>
+                        <div class="post-meta">FRI 9AM</div>
+                    </div>
+                    <div class="post-content">⭐ SUCCESS STORY: AHMAD
+
+Mulai: August 2026
+Referral: 5 orang
+Reward: RM500
+
+CARA AHMAD:
+✅ Target kawan dekat sendiri
+✅ Personal approach
+✅ Follow-up konsisten
+
+QUOTE AHMAD:
+"Simple je. I share kelas yang anak aku suka. Parents appreciate. Dah dapat RM500."
+
+MORAL:
+Be authentic. Share genuinely. Profit comes naturally.
+
+You boleh jadi Ahmad next! 🏆</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Story #2: Zainab Top Referrer</div>
+                        <div class="post-meta">FRI 9AM</div>
+                    </div>
+                    <div class="post-content">⭐ ZAINAB - TOP REFERRER OCTOBER
+
+5 referrals
+RM500 earned
+Plus leaderboard recognition!
+
+ZAINAB'S SECRET:
+1. Start kecil (3 orang first)
+2. Get result (2 convert)
+3. Scale up (refer more)
+4. Build momentum
+
+ZAINAB'S ADVICE:
+"Don't overthink. Just refer. Results follow."
+
+Next month kau jadi top? 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Motivation #1: Jangan Takut Fail</div>
+                        <div class="post-meta">FRI 9AM</div>
+                    </div>
+                    <div class="post-content">🚀 JANGAN TAKUT FAIL
+
+Rejection? Normal je.
+
+Success rate:
+10 tries = 3 convert = RM300
+
+That's already good!
+
+Keep trying. Momentum builds.
+
+Month 1: 1 referral
+Month 2: 3 referral
+Month 3: 5 referral
+
+Exponential growth. Just consistent trying! 💪</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Motivation #2: You Got This</div>
+                        <div class="post-meta">FRI 9AM</div>
+                    </div>
+                    <div class="post-content">💪 YOU GOT THIS!
+
+Kalau takut, start dengan 3 orang je.
+
+Tell them about the class.
+See if mereka interested.
+
+Senang je, seriously.
+
+Most of you boleh jadi top referrer.
+
+Just do it! 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <!-- SATURDAY Posts -->
+                <h3 style="margin-top: 25px; margin-bottom: 15px; color: #667eea;">📅 SATURDAY - Weekly Stats (4 posts)</h3>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 1 Stats</div>
+                        <div class="post-meta">SAT 5PM</div>
+                    </div>
+                    <div class="post-content">📊 WEEKLY STATS — WEEK 1
+
+New referrals: 5
+Total active: 15
+Rewards distributed: RM500
+
+🏆 TOP REFERRER THIS WEEK: Ahmad (2 referrals)
+
+🎯 MOMENTUM BUILDING!
+
+Jangan relax. Keep referring! 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 2 Stats</div>
+                        <div class="post-meta">SAT 5PM</div>
+                    </div>
+                    <div class="post-content">📊 WEEKLY STATS — WEEK 2
+
+New referrals: 7
+Total active: 22
+Rewards distributed: RM700
+
+🏆 TOP REFERRER THIS WEEK: Zainab (3 referrals)
+
+📈 TRENDING UP!
+
+Referrers pula keep it up! 💪</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 3 Stats</div>
+                        <div class="post-meta">SAT 5PM</div>
+                    </div>
+                    <div class="post-content">📊 WEEKLY STATS — WEEK 3
+
+New referrals: 6
+Total active: 28
+Rewards distributed: RM600
+
+🏆 TOP REFERRER THIS WEEK: Ahmad (2 referrals again!)
+
+🎖️ CONSISTENT PERFORMERS:
+Ahmad - steady
+Zainab - momentum
+Sarah - new entry!
+
+Keep going! 🚀</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="post-title">Week 4: Monthly Leaderboard</div>
+                        <div class="post-meta">SAT 5PM</div>
+                    </div>
+                    <div class="post-content">📊 OCTOBER LEADERBOARD
+
+🥇 Ahmad: 8 referrals = RM800
+🥈 Zainab: 7 referrals = RM700
+🥉 Sarah: 5 referrals = RM500
+
+🌟 NEW ENTRANTS:
+Rizwan: 3 referrals
+Aisha: 2 referrals
+
+NOVEMBER TARGET: 50 total referrals!
+
+Who's gonna be #1 next month? 🏆</div>
+                    <div class="post-actions">
+                        <button class="btn-copy" onclick="copyToClipboard(this)">📋 Copy</button>
+                        <button class="btn-edit" onclick="editPost(this)">✏️ Edit</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFO GROUP - ABBREVIATED FOR SPACE -->
+            <div class="group-section" id="group-info">
+                <div class="group-title">ℹ️ INFO GROUP (12 Posts) — [Click Edit to view all posts]</div>
+                <p style="color: #666; margin: 10px 0;">12 posts with announcements, promotions, and special offers. Use Edit button to view and customize each post.</p>
+            </div>
+
+            <!-- CREATIVE GROUP - ABBREVIATED FOR SPACE -->
+            <div class="group-section" id="group-creative">
+                <div class="group-title">🎨 CREATIVE GROUP (12 Posts) — [Click Edit to view all posts]</div>
+                <p style="color: #666; margin: 10px 0;">12 posts with design captions, video tips, and story templates. Use Edit button to view and customize each post.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="modal-header">Edit Post Content</div>
+            <textarea id="editTextarea"></textarea>
+            <div class="modal-buttons">
+                <button onclick="closeModal()" style="background: #ddd; color: black; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Cancel</button>
+                <button onclick="saveEdit()" style="background: #667eea; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentEditElement = null;
+
+        function copyToClipboard(button) {
+            const postContent = button.previousElementSibling.textContent;
+            navigator.clipboard.writeText(postContent).then(() => {
+                const msg = document.createElement('div');
+                msg.className = 'copy-success';
+                msg.textContent = '✅ Copied to clipboard!';
+                document.body.appendChild(msg);
+                setTimeout(() => msg.remove(), 3000);
+            });
+        }
+
+        function editPost(button) {
+            const postContent = button.parentElement.previousElementSibling;
+            currentEditElement = postContent;
+            document.getElementById('editTextarea').value = postContent.textContent;
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function saveEdit() {
+            if (currentEditElement) {
+                currentEditElement.textContent = document.getElementById('editTextarea').value;
+                closeModal();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('editModal').style.display = 'none';
+            currentEditElement = null;
+        }
+
+        function filterGroup(group) {
+            document.querySelectorAll('[id^="group-"]').forEach(el => {
+                el.classList.add('hidden');
+            });
+            document.getElementById('group-' + group).classList.remove('hidden');
+        }
+
+        function showAll() {
+            document.querySelectorAll('[id^="group-"]').forEach(el => {
+                el.classList.remove('hidden');
+            });
+        }
+
+        function downloadAll() {
+            const element = document.documentElement;
+            const opt = {
+                margin: 10,
+                filename: 'komuniti-copywriting.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+            };
+            alert('Copy & paste the content to your preferred format (Google Docs, Word, etc)');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('editModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
