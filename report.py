@@ -12,10 +12,12 @@ ver = os.getenv("META_API_VERSION", "v23.0")
 if not token or not accts:
     sys.exit("META_ACCESS_TOKEN / META_AD_ACCOUNT_IDS belum diisi")
 
-RESULT_TYPES = [
-    "onsite_conversion.messaging_conversation_started_7d",  # chat WhatsApp/Messenger dimulakan
-    "lead", "onsite_conversion.lead_grouped",
-]
+# Hasil = 3 jenis (ditetapkan oleh pemilik akaun):
+RESULT_TYPES = {
+    "Website lead": "offsite_conversion.fb_pixel_lead",
+    "WhatsFormSubmit": "offsite_conversion.custom.952878694093622",   # custom conversion 'Lead WhatsForm'
+    "Chat dimulakan": "onsite_conversion.messaging_conversation_started_7d",
+}
 H = {"Authorization": f"Bearer {token}"}
 
 def get_all(url, params):
@@ -28,12 +30,14 @@ def get_all(url, params):
         url, params = r.get("paging", {}).get("next"), None
     return rows
 
+def breakdown(row):
+    out = {}
+    for label, t in RESULT_TYPES.items():
+        out[label] = sum(int(float(x["value"])) for x in row.get("actions", []) if x["action_type"] == t)
+    return out
+
 def result_of(row):
-    for t in RESULT_TYPES:
-        for a in row.get("actions", []):
-            if a["action_type"] == t:
-                return int(float(a["value"]))
-    return 0
+    return sum(breakdown(row).values())
 
 for acct in accts:
     cur = requests.get(f"https://graph.facebook.com/{ver}/{acct}", headers=H,
@@ -48,10 +52,12 @@ for acct in accts:
         data.append({"ad": r.get("ad_name", "?"), "spend": spend, "imp": int(r.get("impressions", 0)),
                      "ctr": float(r.get("ctr", 0)), "res": res,
                      "cpr": spend / res if res else None})
+    brk = {k: sum(breakdown(r)[k] for r in rows) for k in RESULT_TYPES}
     tot_s = sum(d["spend"] for d in data); tot_r = sum(d["res"] for d in data)
     print(f"\n=== {cur.get('name')} ({acct[:4]}…) · 7 hari lepas · {cur.get('currency')} ===")
-    print(f"Jumlah spend: RM {tot_s:,.2f} · Hasil (chat/lead): {tot_r} · Purata kos/hasil: "
+    print(f"Jumlah spend: RM {tot_s:,.2f} · Hasil (website lead + WhatsFormSubmit + chat): {tot_r} · Purata kos/hasil: "
           f"{'RM %.2f' % (tot_s/tot_r) if tot_r else '-'} · Bilangan ad: {len(data)}\n")
+    print("Pecahan hasil: " + " · ".join(f"{k} {v}" for k, v in brk.items()) + "\n")
     ranked = sorted(data, key=lambda d: (d["cpr"] is None, d["cpr"] or 0))
     print(f"{'Ad':44}{'Spend':>10}{'Impr':>9}{'CTR':>7}{'Hasil':>7}{'RM/hasil':>10}")
     print("-" * 87)
