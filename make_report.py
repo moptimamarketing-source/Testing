@@ -50,21 +50,6 @@ doc = SimpleDocTemplate('/home/user/Testing/Ads_Spend_Minda_Optima_Jan2025-Okt20
 s = [Paragraph('Laporan Ads Spend - Minda Optima', H1),
      Paragraph('Tempoh: Januari 2025 - Oktober 2026 | Semua jumlah dalam RM', SUB)]
 
-tm, tt, tg = sum(meta25)+sum(meta26), sum(tt25)+sum(tt26), sum(g25)+sum(g26)
-grand = tm+tt+tg
-sumrows = [['Platform','2025','2026 (Jan-Okt)','Jumlah','%'],
-           ['Meta Ads', f(sum(meta25)), f(sum(meta26)), f(tm), f'{tm/grand*100:.1f}%'],
-           ['TikTok Ads', f(sum(tt25)), f(sum(tt26)), f(tt), f'{tt/grand*100:.1f}%'],
-           ['Google Ads', f(sum(g25)), f(sum(g26)), f(tg), f'{tg/grand*100:.1f}%'],
-           ['JUMLAH', f(sum(meta25)+sum(tt25)+sum(g25)), f(sum(meta26)+sum(tt26)+sum(g26)), f(grand), '100%']]
-s += [Paragraph('Ringkasan', H2), table(sumrows, [38*mm, 36*mm, 38*mm, 38*mm, 20*mm]), Spacer(1,6),
-      Paragraph('<b>Nota:</b> TikTok dan Google ialah jumlah termasuk cukai (DST dan Service Tax 8%), '
-                'dikira daripada invois dalam Google Drive. Angka Meta diberi oleh pengguna dan tidak disahkan '
-                'dengan sumber asal. Bulan TikTok 0.00 bermaksud tiada invois dalam folder; Google Nov 2025 juga '
-                'tiada invois. TikTok Apr-Mei 2025 termasuk invois atas nama "Pusat Tuisyen Minda Optima" '
-                '(tanpa Sdn Bhd), RM607.63.', NOTE), PageBreak()]
-s += single('Meta Ads 2025', meta25) + single('Meta Ads 2026 (Jan-Okt)', meta26) + [PageBreak()]
-s += single('TikTok Ads 2025', tt25) + single('TikTok Ads 2026 (Jan-Okt)', tt26) + [PageBreak()]
-s += single('Google Ads 2025', g25) + single('Google Ads 2026 (Jan-Okt)', g26) + [PageBreak()]
-s += combined('Gabungan 2025', meta25, tt25, g25) + combined('Gabungan 2026 (Jan-Okt)', meta26, tt26, g26)
+s += combined('Gabungan 2025', meta25, tt25, g25) + [Spacer(1,8)] + combined('Gabungan 2026 (Jan-Okt)', meta26, tt26, g26)
+s += [Spacer(1,6), Paragraph('TikTok dan Google termasuk cukai (DST / Service Tax 8%). 0.00 = tiada invois dalam folder.', NOTE)]
 doc.build(s)
