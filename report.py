@@ -15,7 +15,7 @@ if not token or not accts:
 # Hasil = 3 jenis (ditetapkan oleh pemilik akaun):
 RESULT_TYPES = {
     "Website lead": "offsite_conversion.fb_pixel_lead",
-    "WhatsFormSubmit": "offsite_conversion.custom.952878694093622",   # custom conversion 'Lead WhatsForm'
+    "WhatsFormSubmit": "offsite_conversion.custom.1098957059376205",   # custom conversion "whatsform rm50" = event WhatsFormSubmit
     "Chat dimulakan": "onsite_conversion.messaging_conversation_started_7d",
 }
 H = {"Authorization": f"Bearer {token}"}
