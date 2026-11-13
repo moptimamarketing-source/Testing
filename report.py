@@ -12,7 +12,7 @@ ver = os.getenv("META_API_VERSION", "v23.0")
 if not token or not accts:
     sys.exit("META_ACCESS_TOKEN / META_AD_ACCOUNT_IDS belum diisi")
 
-# Hasil = 3 jenis (ditetapkan oleh pemilik akaun):
+# Result = 3 jenis (ditetapkan oleh pemilik akaun):
 RESULT_TYPES = {
     "Website lead": "offsite_conversion.fb_pixel_lead",
     "WhatsFormSubmit": "offsite_conversion.custom.1098957059376205",   # custom conversion "whatsform rm50" = event WhatsFormSubmit
@@ -52,14 +52,12 @@ for acct in accts:
         data.append({"ad": r.get("ad_name", "?"), "spend": spend, "imp": int(r.get("impressions", 0)),
                      "ctr": float(r.get("ctr", 0)), "res": res,
                      "cpr": spend / res if res else None})
-    brk = {k: sum(breakdown(r)[k] for r in rows) for k in RESULT_TYPES}
     tot_s = sum(d["spend"] for d in data); tot_r = sum(d["res"] for d in data)
     print(f"\n=== {cur.get('name')} ({acct[:4]}…) · 7 hari lepas · {cur.get('currency')} ===")
-    print(f"Jumlah spend: RM {tot_s:,.2f} · Hasil (website lead + WhatsFormSubmit + chat): {tot_r} · Purata kos/hasil: "
+    print(f"Jumlah spend: RM {tot_s:,.2f} · Result: {tot_r} · Purata kos/hasil: "
           f"{'RM %.2f' % (tot_s/tot_r) if tot_r else '-'} · Bilangan ad: {len(data)}\n")
-    print("Pecahan hasil: " + " · ".join(f"{k} {v}" for k, v in brk.items()) + "\n")
     ranked = sorted(data, key=lambda d: (d["cpr"] is None, d["cpr"] or 0))
-    print(f"{'Ad':44}{'Spend':>10}{'Impr':>9}{'CTR':>7}{'Hasil':>7}{'RM/hasil':>10}")
+    print(f"{'Ad':44}{'Spend':>10}{'Impr':>9}{'CTR':>7}{'Result':>7}{'RM/hasil':>10}")
     print("-" * 87)
     for d in ranked:
         cpr = f"{d['cpr']:.2f}" if d["cpr"] else "-"
