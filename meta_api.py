@@ -22,7 +22,8 @@ def check_env():
 
 
 def get(path, **params):
-    params["access_token"] = TOKEN
+    if TOKEN != "proxy-injected":
+        params["access_token"] = TOKEN
     r = requests.get(f"{BASE}/{path}", params=params, timeout=30)
     if not r.ok:
         err = r.json().get("error", {})
@@ -32,7 +33,8 @@ def get(path, **params):
 
 def post(path, **data):
     """Guna untuk cipta objek. Sentiasa paksa status PAUSED."""
-    data["access_token"] = TOKEN
+    if TOKEN != "proxy-injected":
+        data["access_token"] = TOKEN
     data["status"] = "PAUSED"
     r = requests.post(f"{BASE}/{path}", data=data, timeout=30)
     if not r.ok:
