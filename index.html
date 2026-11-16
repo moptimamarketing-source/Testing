@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minda Optima — Daftar Assessment Percuma</title>
-<meta name="description" content="Minda Optima: program membaca kanak-kanak dengan kaedah 1-to-1 turn-taking, Pantas Baca &amp; The Victoria Readers. Daftar assessment percuma hari ini.">
+<title>Minda Optima — Daftar Kelas Membaca</title>
+<meta name="description" content="Minda Optima: program membaca Pantas Baca (BM) &amp; The Victoria Readers (BI), Teknik Artikulasi, 1-to-1 secara bergiliran sejak 1995. Daftar sekarang.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -190,17 +190,35 @@
   }
   .trust-badge svg{width:17px;height:17px;color:var(--sun-deep)}
 
+  /* ============ Pricing ============ */
+  .price-sec{background:#FFF8ED}
+  .price-onetime{
+    max-width:520px;margin:0 auto 32px;text-align:center;background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius);padding:18px 24px;font-size:.92rem;color:var(--ink-soft);
+  }
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media (max-width:900px){ .price-grid{grid-template-columns:1fr} }
+  .price-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px;text-align:center;
+  }
+  .price-card.hl{border:2px solid var(--sun-deep);position:relative}
+  .price-card .pop{
+    position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--sun-deep);color:#fff;
+    font-size:.7rem;font-weight:800;padding:4px 14px;border-radius:999px;letter-spacing:.03em;white-space:nowrap;
+  }
+  .price-card h3{font-size:1.1rem;color:var(--navy);margin-bottom:6px}
+  .price-card .amt{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:2.1rem;color:var(--navy);margin:10px 0 2px}
+  .price-card .amt span{font-size:.9rem;font-weight:600;color:var(--ink-soft)}
+  .price-card .dur{font-size:.84rem;color:var(--ink-soft);margin-bottom:14px}
+  .price-note{text-align:center;color:var(--ink-soft);font-size:.82rem;margin-top:24px}
+
   /* ============ Testimonials (placeholder) ============ */
   .testi-sec{background:#F4F1FF}
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   @media (max-width:900px){ .testi-grid{grid-template-columns:1fr} }
   .testi-card{
-    background:var(--paper);border:1px dashed #C9BFEF;border-radius:var(--radius);padding:24px;
+    background:var(--paper);border:1px solid #E4DCFA;border-radius:var(--radius);padding:24px;
     position:relative;
-  }
-  .testi-card .placeholder-flag{
-    position:absolute;top:-11px;left:18px;background:#7C3AED;color:#fff;font-size:.68rem;
-    font-weight:800;letter-spacing:.04em;padding:3px 10px;border-radius:999px;text-transform:uppercase;
   }
   .testi-card p.quote{font-size:.92rem;color:var(--ink-soft);font-style:italic;margin-bottom:14px}
   .testi-card .who{font-size:.86rem;font-weight:700;color:var(--navy)}
@@ -309,36 +327,38 @@
 <!-- ================= HERO ================= -->
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow" style="color:#FDE68A">MINDA OPTIMA · ASSESSMENT PERCUMA</p>
+    <p class="eyebrow" style="color:#FDE68A">MINDA OPTIMA · BERPENGALAMAN SEJAK 1995</p>
     <div class="pills">
-      <span class="pill"><svg width="14" height="14"><use href="#ic-users"/></svg>Ibu bapa</span>
-      <span class="pill"><svg width="14" height="14"><use href="#ic-book"/></svg>Umur 4–12 tahun</span>
-      <span class="pill"><svg width="14" height="14"><use href="#ic-mic"/></svg>Kaedah 1-to-1</span>
+      <span class="pill"><svg width="14" height="14"><use href="#ic-users"/></svg>Umur 4 thn 6 bln+</span>
+      <span class="pill"><svg width="14" height="14"><use href="#ic-book"/></svg>Bahasa Melayu &amp; Inggeris</span>
+      <span class="pill"><svg width="14" height="14"><use href="#ic-mic"/></svg>Teknik Artikulasi</span>
     </div>
-    <h1>Bantu Anak Anda Membaca Dengan <span class="hl">Yakin &amp; Gembira</span>, Mengikut Rentak Mereka Sendiri</h1>
-    <p class="lead">Program <b style="color:#fff">Pantas Baca</b> &amp; <b style="color:#fff">The Victoria Readers</b> dengan kaedah <b style="color:#fff">1-to-1 turn-taking</b> — kelas kecil, bukan tuisyen beramai-ramai, bukan taska.</p>
+    <h1>Bantu Anak Anda Membaca BM &amp; BI Dengan <span class="hl">Teknik Artikulasi</span> Yang Santai &amp; Terbukti</h1>
+    <p class="lead">Program <b style="color:#fff">Pantas Baca</b> (BM) &amp; <b style="color:#fff">The Victoria Readers</b> (BI) — belajar <b style="color:#fff">1-to-1 secara bergiliran</b> dalam kelas kecil, maksimum 8 murid. Pilih mod Fizikal, Online atau Hybrid.</p>
     <div class="cta-row">
-      <a href="#borang" class="btn">Daftar Assessment Percuma <svg width="18" height="18"><use href="#ic-arrow-down"/></svg></a>
+      <a href="#borang" class="btn">Daftar Kelas Sekarang <svg width="18" height="18"><use href="#ic-arrow-down"/></svg></a>
     </div>
-    <p class="micro"><svg><use href="#ic-shield"/></svg>Tanpa komitmen · 20+ lokasi di seluruh Malaysia</p>
+    <p class="micro"><svg><use href="#ic-shield"/></svg>Sejak 1995 · 16 cawangan · 2,140+ murid</p>
   </div>
 </header>
 
 <div class="marquee-bar">
   <div class="marquee-track">
     <ul class="mq-group">
-      <li><svg><use href="#ic-book"/></svg>Pantas Baca</li>
-      <li><svg><use href="#ic-mic"/></svg>The Victoria Readers</li>
-      <li><svg><use href="#ic-users"/></svg>Kaedah 1-to-1 Turn-Taking</li>
-      <li><svg><use href="#ic-map"/></svg>20+ Lokasi Seluruh Malaysia</li>
-      <li><svg><use href="#ic-check"/></svg>Kelas Kecil, Maksimum 8 Pelajar</li>
+      <li><svg><use href="#ic-book"/></svg>Pantas Baca (BM)</li>
+      <li><svg><use href="#ic-mic"/></svg>The Victoria Readers (BI)</li>
+      <li><svg><use href="#ic-users"/></svg>1-to-1 Secara Bergiliran</li>
+      <li><svg><use href="#ic-map"/></svg>16 Cawangan</li>
+      <li><svg><use href="#ic-check"/></svg>Max 8 Murid/Kelas</li>
+      <li><svg><use href="#ic-target"/></svg>Fizikal · Online · Hybrid</li>
     </ul>
     <ul class="mq-group" aria-hidden="true">
-      <li><svg><use href="#ic-book"/></svg>Pantas Baca</li>
-      <li><svg><use href="#ic-mic"/></svg>The Victoria Readers</li>
-      <li><svg><use href="#ic-users"/></svg>Kaedah 1-to-1 Turn-Taking</li>
-      <li><svg><use href="#ic-map"/></svg>20+ Lokasi Seluruh Malaysia</li>
-      <li><svg><use href="#ic-check"/></svg>Kelas Kecil, Maksimum 8 Pelajar</li>
+      <li><svg><use href="#ic-book"/></svg>Pantas Baca (BM)</li>
+      <li><svg><use href="#ic-mic"/></svg>The Victoria Readers (BI)</li>
+      <li><svg><use href="#ic-users"/></svg>1-to-1 Secara Bergiliran</li>
+      <li><svg><use href="#ic-map"/></svg>16 Cawangan</li>
+      <li><svg><use href="#ic-check"/></svg>Max 8 Murid/Kelas</li>
+      <li><svg><use href="#ic-target"/></svg>Fizikal · Online · Hybrid</li>
     </ul>
   </div>
 </div>
@@ -347,24 +367,25 @@
 <section class="sec">
   <div class="wrap">
     <div class="sec-head">
-      <p class="eyebrow">Apa Anak Anda Akan Ikuti</p>
-      <h2>Dua Program Teras, <span class="hl">Satu Kaedah</span></h2>
-      <p>Disusun mengikut tahap anak — dari asas membaca sampai lancar.</p>
+      <p class="eyebrow">Dua Bahasa, Satu Teknik</p>
+      <h2>Pantas Baca (BM) &amp; <span class="hl">The Victoria Readers</span> (BI)</h2>
+      <p>Buku terbitan sendiri Minda Optima, dibina khas dengan Teknik Artikulasi.</p>
     </div>
     <div class="prog-grid">
       <div class="prog-card reveal">
         <div class="ic" style="background:#EEF2FF;color:#4F46E5"><svg width="26" height="26"><use href="#ic-book"/></svg></div>
-        <h3>Pantas Baca</h3>
-        <p>Modul asas membaca — bina kemahiran mengecam bunyi, suku kata dan ayat secara berperingkat, ikut keupayaan anak sendiri.</p>
-        <span class="tag" style="background:#EEF2FF;color:#4F46E5">Peringkat permulaan</span>
+        <h3>Bahasa Melayu — Pantas Baca</h3>
+        <p>Modul membaca Bahasa Melayu guna buku "Pantas Baca" terbitan sendiri, dengan Teknik Artikulasi yang santai &amp; mudah diikuti — tanpa hafalan.</p>
+        <span class="tag" style="background:#EEF2FF;color:#4F46E5">Disyorkan mula di sini</span>
       </div>
       <div class="prog-card reveal">
         <div class="ic" style="background:#FFF1EE;color:var(--coral)"><svg width="26" height="26"><use href="#ic-mic"/></svg></div>
-        <h3>The Victoria Readers</h3>
-        <p>Modul lanjutan untuk perkukuhkan kefahaman &amp; keyakinan membaca, dengan sesi bacaan bergilir (turn-taking) bersama fasilitator.</p>
-        <span class="tag" style="background:#FFF1EE;color:var(--coral)">Peringkat lanjutan</span>
+        <h3>Bahasa Inggeris — The Victoria Readers</h3>
+        <p>Modul membaca Bahasa Inggeris guna buku "The Victoria Readers". Disyorkan selepas anak dah selesa dengan program Bahasa Melayu.</p>
+        <span class="tag" style="background:#FFF1EE;color:var(--coral)">Selepas program BM</span>
       </div>
     </div>
+    <p style="text-align:center;color:var(--ink-soft);font-size:.9rem;margin-top:20px">Nota: anak digalakkan fokus satu bahasa pada satu masa supaya tidak keliru — mula dengan Bahasa Melayu sebelum Bahasa Inggeris.</p>
   </div>
 </section>
 
@@ -391,14 +412,14 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow" style="color:var(--sun)">Kaedah Kami</p>
-      <h2>Macam Mana <span class="hl" style="background-image:none">1-to-1 Turn-Taking</span> Berfungsi</h2>
-      <p>Setiap anak baca secara bergilir bersama fasilitator — bukan sekadar dengar dalam kelas besar.</p>
+      <h2>Macam Mana <span class="hl" style="background-image:none">Teknik Artikulasi</span> Berfungsi</h2>
+      <p>Dari pengalaman kami sejak 1995 — sesetengah anak mula menunjukkan kemajuan ketara seawal 22 hari, dengan kaedah yang santai &amp; tanpa tekanan.</p>
     </div>
     <div class="method-grid">
-      <div class="method-card"><span class="num">1</span><h3>Assessment Percuma</h3><p>Fasilitator kenal pasti tahap bacaan semasa anak anda.</p></div>
-      <div class="method-card"><span class="num">2</span><h3>Modul Mengikut Tahap</h3><p>Anak disusun dalam Pantas Baca atau Victoria Readers ikut keperluan.</p></div>
-      <div class="method-card"><span class="num">3</span><h3>Sesi Turn-Taking</h3><p>Dalam kelas kecil (maksimum 8 pelajar), setiap anak baca bergilir dengan bimbingan rapat.</p></div>
-      <div class="method-card"><span class="num">4</span><h3>Semakan Progress</h3><p>Ibu bapa dikemas kini perkembangan anak dari semasa ke semasa.</p></div>
+      <div class="method-card"><span class="num">1</span><h3>Kenal Pasti Tahap</h3><p>Cikgu semak tahap bacaan semasa anak sebelum mula silibus yang sesuai.</p></div>
+      <div class="method-card"><span class="num">2</span><h3>1-to-1 Secara Bergiliran</h3><p>Setiap anak membaca bergilir dengan cikgu — bukan sekadar dengar dalam kelas besar.</p></div>
+      <div class="method-card"><span class="num">3</span><h3>Kelas Kecil, Max 8 Murid</h3><p>Supaya setiap anak dapat perhatian &amp; bimbingan rapat daripada guru pakar berpengalaman.</p></div>
+      <div class="method-card"><span class="num">4</span><h3>Progress Dikemas Kini</h3><p>Silibus disusun dari tahap senang ke susah — ibu bapa dapat update perkembangan anak secara berkala.</p></div>
     </div>
   </div>
 </section>
@@ -408,26 +429,58 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Kenapa Ramai Pilih Minda Optima</p>
-      <h2>Bukan Tuisyen Biasa, <span class="hl">Bukan Juga Taska</span></h2>
+      <h2>Bukan Tuisyen Biasa, <span class="hl">Terbukti Sejak 1995</span></h2>
     </div>
     <div class="benefit-grid">
-      <div class="benefit-card reveal" style="--bc:#EEF2FF;--bcc:#4F46E5"><div class="ic"><svg><use href="#ic-users"/></svg></div><h3>Kelas kecil</h3><p>Maksimum 8 pelajar sekelas supaya setiap anak dapat perhatian.</p></div>
-      <div class="benefit-card reveal" style="--bc:#F0FDF4;--bcc:#16A34A"><div class="ic"><svg><use href="#ic-mic"/></svg></div><h3>Bimbingan 1-to-1</h3><p>Sesi bacaan bergilir bersama fasilitator terlatih, bukan sekadar dengar.</p></div>
-      <div class="benefit-card reveal" style="--bc:#FFF7ED;--bcc:#F97316"><div class="ic"><svg><use href="#ic-map"/></svg></div><h3>20+ lokasi</h3><p>Cari pusat Minda Optima berhampiran kawasan anda.</p></div>
-      <div class="benefit-card reveal" style="--bc:#FDF2F8;--bcc:#DB2777"><div class="ic"><svg><use href="#ic-book"/></svg></div><h3>Modul teratur</h3><p>Pantas Baca &amp; The Victoria Readers disusun ikut tahap, bukan satu saiz untuk semua.</p></div>
-      <div class="benefit-card reveal" style="--bc:#ECFEFF;--bcc:#0891B2"><div class="ic"><svg><use href="#ic-check"/></svg></div><h3>Fasilitator terlatih</h3><p>Dibimbing oleh fasilitator yang faham cara anak kecil belajar membaca.</p></div>
-      <div class="benefit-card reveal" style="--bc:#FEFCE8;--bcc:#CA8A04"><div class="ic"><svg><use href="#ic-target"/></svg></div><h3>Assessment dahulu</h3><p>Anak ditempatkan ikut tahap sebenar, bukan tebak-tebak.</p></div>
+      <div class="benefit-card reveal" style="--bc:#EEF2FF;--bcc:#4F46E5"><div class="ic"><svg><use href="#ic-clock"/></svg></div><h3>Sejak 1995</h3><p>Lebih 2,140 murid telah melalui program Pantas Baca &amp; The Victoria Readers.</p></div>
+      <div class="benefit-card reveal" style="--bc:#F0FDF4;--bcc:#16A34A"><div class="ic"><svg><use href="#ic-mic"/></svg></div><h3>Teknik Artikulasi</h3><p>Gabungan phonic, mengeja &amp; mengaji — santai dan mudah diikuti anak.</p></div>
+      <div class="benefit-card reveal" style="--bc:#FFF7ED;--bcc:#F97316"><div class="ic"><svg><use href="#ic-users"/></svg></div><h3>Kelas kecil</h3><p>Maksimum 8 murid sekelas, belajar 1-to-1 secara bergiliran.</p></div>
+      <div class="benefit-card reveal" style="--bc:#FDF2F8;--bcc:#DB2777"><div class="ic"><svg><use href="#ic-map"/></svg></div><h3>16 cawangan</h3><p>Di Klang Valley, Bangi, Putrajaya &amp; Shah Alam (terbaru).</p></div>
+      <div class="benefit-card reveal" style="--bc:#ECFEFF;--bcc:#0891B2"><div class="ic"><svg><use href="#ic-book"/></svg></div><h3>3 mod pembelajaran</h3><p>Pilih Fizikal, Online atau Hybrid ikut kesesuaian keluarga.</p></div>
+      <div class="benefit-card reveal" style="--bc:#FEFCE8;--bcc:#CA8A04"><div class="ic"><svg><use href="#ic-check"/></svg></div><h3>Dipantau guru pakar</h3><p>Setiap anak dibimbing rapat oleh guru berpengalaman.</p></div>
     </div>
     <div class="trust-row">
-      <span class="trust-badge"><svg><use href="#ic-map"/></svg>20+ Lokasi</span>
-      <span class="trust-badge"><svg><use href="#ic-users"/></svg>Kelas Maksimum 8 Pelajar</span>
+      <span class="trust-badge"><svg><use href="#ic-clock"/></svg>Sejak 1995</span>
+      <span class="trust-badge"><svg><use href="#ic-users"/></svg>2,140+ Murid</span>
+      <span class="trust-badge"><svg><use href="#ic-map"/></svg>16 Cawangan</span>
       <span class="trust-badge"><svg><use href="#ic-whatsapp"/></svg>Support WhatsApp</span>
     </div>
-    <div class="cta-row"><a href="#borang" class="btn">Daftar Assessment Percuma <svg width="18" height="18"><use href="#ic-arrow-down"/></svg></a></div>
+    <div class="cta-row"><a href="#borang" class="btn">Daftar Kelas Sekarang <svg width="18" height="18"><use href="#ic-arrow-down"/></svg></a></div>
   </div>
 </section>
 
-<!-- ================= TESTIMONIALS (placeholder) ================= -->
+<!-- ================= PRICING ================= -->
+<section class="sec price-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow" style="color:var(--sun-deep)">Pelaburan Anda</p>
+      <h2>Pakej Kelas <span class="hl">Membaca</span></h2>
+      <p>Yuran pendaftaran &amp; buku dibayar sekali sahaja seumur hidup. Bulan seterusnya, hanya yuran pakej bulanan.</p>
+    </div>
+    <div class="price-onetime"><b>Pendaftaran RM100</b> (sekali) &nbsp;+&nbsp; <b>Buku RM120</b> (sekali, ikut bahasa)</div>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <h3>Pakej Basic</h3>
+        <div class="amt">RM190<span>/bulan</span></div>
+        <p class="dur">Lancar membaca dalam 6–8 bulan</p>
+      </div>
+      <div class="price-card hl reveal">
+        <span class="pop">PALING LAJU</span>
+        <h3>Pakej Fast+</h3>
+        <div class="amt">RM540<span>/bulan</span></div>
+        <p class="dur">Lancar membaca dalam 3–4 bulan</p>
+      </div>
+      <div class="price-card reveal">
+        <h3>Pakej Fast</h3>
+        <div class="amt">RM360<span>/bulan</span></div>
+        <p class="dur">Lancar membaca dalam 5–6 bulan</p>
+      </div>
+    </div>
+    <p class="price-note">Harga di atas untuk mod Fizikal; mod Online/Hybrid &amp; setiap cawangan mungkin sedikit berbeza. Hubungi team kami di WhatsApp untuk sahkan harga &amp; kekosongan slot terkini.</p>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
 <section class="sec testi-sec">
   <div class="wrap">
     <div class="sec-head">
@@ -435,10 +488,11 @@
       <h2>Testimoni <span class="hl">Ibu Bapa Kami</span></h2>
     </div>
     <div class="testi-grid">
-      <div class="testi-card"><span class="placeholder-flag">Placeholder</span><p class="quote">"[Gantikan dengan testimoni sebenar ibu bapa — pengalaman mereka dengan Minda Optima.]"</p><p class="who">— [Nama], [Lokasi]</p></div>
-      <div class="testi-card"><span class="placeholder-flag">Placeholder</span><p class="quote">"[Gantikan dengan testimoni sebenar ibu bapa — pengalaman mereka dengan Minda Optima.]"</p><p class="who">— [Nama], [Lokasi]</p></div>
-      <div class="testi-card"><span class="placeholder-flag">Placeholder</span><p class="quote">"[Gantikan dengan testimoni sebenar ibu bapa — pengalaman mereka dengan Minda Optima.]"</p><p class="who">— [Nama], [Lokasi]</p></div>
+      <div class="testi-card"><p class="quote">"Terbaik.. dari anak No.1 sampai No.3 semua hantar kat sini... dari tak pandai baca sampai cikgu sekolah kebangsaan puji dah boleh baca buku cerita."</p><p class="who">— Azri Zainul</p></div>
+      <div class="testi-card"><p class="quote">"Minda Optima sangat membantu anak-anak saya pantas membaca Bahasa Melayu dan English. Guru-guru yang friendly, kelas dan waktu pembelajaran yang fleksibel dengan jadual harian saya."</p><p class="who">— Fiza Abdullah</p></div>
+      <div class="testi-card"><p class="quote">"I sent my son to Minda Optima when he was 5 years old. Before that, he couldn't read, but after sending him here, he improved a lot and started to enjoy reading. He can even read TV subtitles now."</p><p class="who">— Ieka Ismail</p></div>
     </div>
+    <p style="text-align:center;color:var(--ink-soft);font-size:.82rem;margin-top:20px">Sumber: testimoni rasmi di pantasbaca.com &amp; borang pendaftaran Minda Optima.</p>
   </div>
 </section>
 
@@ -447,11 +501,10 @@
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow">Langkah Terakhir</p>
-      <h2>Daftar <span class="hl">Assessment Percuma</span> Anak Anda</h2>
+      <h2>Daftar <span class="hl">Kelas Membaca</span> Anak Anda</h2>
       <p>Isi borang di bawah — kami akan sambung terus melalui WhatsApp.</p>
     </div>
     <div class="form-card">
-      <p class="form-note placeholder">⚠️ Placeholder: senarai lokasi dalam borang ini perlu digantikan dengan senarai lokasi sebenar Minda Optima.</p>
       <form id="leadForm">
         <div class="f-row">
           <label for="parentName">Nama Ibu/Bapa</label>
@@ -462,14 +515,27 @@
           <input type="text" id="childAge" name="childAge" required placeholder="Cth: 6 tahun">
         </div>
         <div class="f-row">
-          <label for="location">Lokasi Berhampiran</label>
+          <label for="location">Cawangan Berhampiran</label>
           <select id="location" name="location" required>
-            <option value="">Pilih lokasi</option>
-            <!-- GANTI: senarai 20+ lokasi sebenar Minda Optima -->
-            <option>[Lokasi 1 — GANTI]</option>
-            <option>[Lokasi 2 — GANTI]</option>
-            <option>[Lokasi 3 — GANTI]</option>
-            <option>Lain-lain / tidak pasti</option>
+            <option value="">Pilih cawangan</option>
+            <option>Minda Optima Sri Gombak</option>
+            <option>Minda Optima Taman Melawati</option>
+            <option>Minda Optima KL Traders Square (KLTS)</option>
+            <option>Minda Optima Wangsa Maju</option>
+            <option>Minda Optima Ampang</option>
+            <option>Minda Optima Selayang</option>
+            <option>Minda Optima Sri Damansara</option>
+            <option>Minda Optima Putrajaya (Presint 15)</option>
+            <option>Minda Optima Bandar Baru Bangi</option>
+            <option>Minda Optima Seri Kembangan</option>
+            <option>Minda Optima Prima Saujana, Kajang</option>
+            <option>Minda Optima Bandar Seri Putra</option>
+            <option>Minda Optima Maxim Citylights Sentul</option>
+            <option>Minda Optima Setapak</option>
+            <option>Minda Optima Setiawangsa</option>
+            <option>Minda Optima Shah Alam (Seksyen 7) — dibuka Sept 2026</option>
+            <option>Kelas Online</option>
+            <option>Masih tidak pasti — cadangkan untuk saya</option>
           </select>
         </div>
         <div class="f-row">
@@ -485,8 +551,8 @@
 
     <div class="steps-after">
       <div class="step-mini"><div class="ic"><svg><use href="#ic-check"/></svg></div><div><h4>Hantar borang</h4><p>Lengkapkan maklumat ringkas di atas.</p></div></div>
-      <div class="step-mini"><div class="ic"><svg><use href="#ic-chat"/></svg></div><div><h4>Sambung di WhatsApp</h4><p>Team kami bantu tetapkan slot assessment percuma.</p></div></div>
-      <div class="step-mini"><div class="ic"><svg><use href="#ic-book"/></svg></div><div><h4>Mula assessment</h4><p>Anak dinilai dan ditempatkan ikut tahap bacaan sebenar.</p></div></div>
+      <div class="step-mini"><div class="ic"><svg><use href="#ic-chat"/></svg></div><div><h4>Sambung di WhatsApp</h4><p>Team kami sahkan pakej, harga &amp; slot kelas yang sesuai.</p></div></div>
+      <div class="step-mini"><div class="ic"><svg><use href="#ic-book"/></svg></div><div><h4>Mula kelas</h4><p>Anak dinilai dan ditempatkan ikut tahap bacaan sebenar.</p></div></div>
     </div>
   </div>
 </section>
@@ -498,19 +564,27 @@
     <div class="faq">
       <details open>
         <summary>Minda Optima ni taska atau tempat jaga anak ke?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
-        <div class="faq-ans">Bukan. Minda Optima adalah program membaca berstruktur (Pantas Baca &amp; The Victoria Readers) dengan kaedah 1-to-1 turn-taking, bukan perkhidmatan jagaan atau taska.</div>
+        <div class="faq-ans">Bukan. Minda Optima adalah program membaca berstruktur (Pantas Baca &amp; The Victoria Readers) dengan Teknik Artikulasi &amp; kaedah 1-to-1 secara bergiliran — bukan perkhidmatan jagaan atau taska.</div>
       </details>
       <details>
-        <summary>Anak saya tak suka langsung membaca, boleh ikut ke?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
-        <div class="faq-ans">Boleh. Sesi assessment percuma akan kenal pasti tahap &amp; keperluan anak dahulu sebelum ditempatkan dalam modul yang sesuai.</div>
+        <summary>Teknik apa yang digunakan oleh Minda Optima?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
+        <div class="faq-ans">Teknik Artikulasi — gabungan phonic, mengeja &amp; mengaji, diajar secara santai dan mudah diikuti anak tanpa perlu menghafal.</div>
       </details>
       <details>
-        <summary>Berapa ramai pelajar dalam satu kelas?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
-        <div class="faq-ans">Setiap kelas dihadkan kepada maksimum 8 pelajar, supaya sesi turn-taking 1-to-1 kekal berkesan untuk setiap anak.</div>
+        <summary>Boleh ke anak belajar Bahasa Melayu &amp; Bahasa Inggeris serentak?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
+        <div class="faq-ans">Tidak digalakkan — anak kecil mudah keliru jika belajar dua bahasa dalam masa yang sama. Cikgu sarankan mula dengan program Bahasa Melayu dahulu sebelum mengambil program Bahasa Inggeris.</div>
+      </details>
+      <details>
+        <summary>Berapa ramai murid dalam satu kelas?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
+        <div class="faq-ans">Setiap kelas dihadkan kepada maksimum 8 murid, supaya sesi 1-to-1 secara bergiliran kekal berkesan untuk setiap anak.</div>
+      </details>
+      <details>
+        <summary>Macam mana Minda Optima ukur kemajuan anak?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
+        <div class="faq-ans">Kami ada beberapa silibus dengan tahap senang hingga susah. Admin akan update progress anak secara berkala supaya ibu bapa sentiasa tahu perkembangannya.</div>
       </details>
       <details>
         <summary>Lokasi Minda Optima di mana?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
-        <div class="faq-ans">Kami mempunyai 20+ lokasi di seluruh Malaysia. Isi borang di atas dan team kami akan cadangkan pusat paling hampir dengan anda.</div>
+        <div class="faq-ans">Kami mempunyai 16 cawangan di Klang Valley, Bangi, Putrajaya &amp; Shah Alam (terbaru), selain pilihan kelas Online. Isi borang di atas dan team kami akan cadangkan cawangan paling hampir dengan anda.</div>
       </details>
       <details>
         <summary>Ada soalan lain?<span class="chev"><svg width="18" height="18"><use href="#ic-arrow-down"/></svg></span></summary>
@@ -526,7 +600,7 @@
     <div class="final-card">
       <p class="eyebrow">Dah Baca Sampai Sini…</p>
       <h2>Mula Perjalanan Membaca Anak Anda <span class="hl" style="background-image:none">Hari Ini</span></h2>
-      <div class="cta-row"><a href="#borang" class="btn">Daftar Assessment Percuma <svg width="18" height="18"><use href="#ic-arrow-down"/></svg></a></div>
+      <div class="cta-row"><a href="#borang" class="btn">Daftar Kelas Sekarang <svg width="18" height="18"><use href="#ic-arrow-down"/></svg></a></div>
     </div>
   </div>
 </section>
@@ -539,7 +613,8 @@
     <a class="wa-btn" id="footerWaBtn" href="#" target="_blank" rel="noopener"><svg><use href="#ic-whatsapp"/></svg>WhatsApp Kami</a>
     <p class="disclaimer">Penafian: Hasil pembelajaran setiap anak berbeza-beza dan bergantung kepada usaha, penglibatan serta keadaan masing-masing. Minda Optima adalah program pendidikan membaca dan bukan perkhidmatan jagaan kanak-kanak (taska/childcare).</p>
     <p class="legal"><a href="#">Dasar Privasi</a> · <a href="#">Terma &amp; Syarat</a> · <a href="#">Notis PDPA</a></p>
-    <p class="copy">© <span id="yr"></span> Minda Optima. Hak cipta terpelihara.</p>
+    <p class="copy">Pusat Tuisyen Minda Optima Sdn. Bhd. (1184954-W) · Lot 1029, Tingkat 1, Jalan Samudera Utama, Taman Samudra, 68100 Batu Caves, Selangor · <a href="mailto:web@pantasmembaca.com" style="text-decoration:underline">web@pantasmembaca.com</a></p>
+    <p class="copy">© <span id="yr"></span> Pusat Tuisyen Minda Optima Sdn. Bhd. Hak cipta terpelihara.</p>
   </div>
 </footer>
 
@@ -565,7 +640,7 @@
     const age = document.getElementById('childAge').value.trim();
     const loc = document.getElementById('location').value;
     const msg = "Hi Minda Optima, saya " + name + ". Anak saya berumur " + age +
-      ". Saya berminat dengan assessment percuma di kawasan " + loc + ". Boleh bantu saya?";
+      ". Saya berminat dengan kelas membaca di " + loc + ". Boleh bantu saya?";
     window.location.href = buildWaLink(msg);
   });
 
