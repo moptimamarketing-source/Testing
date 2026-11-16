@@ -451,12 +451,36 @@
       <p>Isi borang di bawah — kami akan sambung terus melalui WhatsApp.</p>
     </div>
     <div class="form-card">
-      <p class="form-note placeholder">⚠️ Placeholder: link Whatsform di bawah ("WHATSFORM_SLUG") perlu digantikan dengan slug form sebenar (cth: whatsform.com/gyt atau form lain yang berkaitan offer ni).</p>
-      <div style="text-align:center">
-        <p style="color:var(--ink-soft);margin-bottom:22px;font-size:.95rem">Klik butang di bawah untuk isi borang ringkas — jawapan anda akan terus dihantar ke WhatsApp team kami.</p>
-        <a id="whatsformBtn" href="#" target="_blank" rel="noopener" class="btn" style="width:100%;justify-content:center">Isi Borang Pendaftaran <svg width="18" height="18"><use href="#ic-whatsapp"/></svg></a>
-      </div>
-      <p class="form-note">Borang dikendalikan melalui Whatsform — jawapan anda terus disambungkan ke WhatsApp team Minda Optima.</p>
+      <p class="form-note placeholder">⚠️ Placeholder: senarai lokasi dalam borang ini perlu digantikan dengan senarai lokasi sebenar Minda Optima.</p>
+      <form id="leadForm">
+        <div class="f-row">
+          <label for="parentName">Nama Ibu/Bapa</label>
+          <input type="text" id="parentName" name="parentName" required placeholder="Cth: Nurul Ain">
+        </div>
+        <div class="f-row">
+          <label for="childAge">Umur Anak</label>
+          <input type="text" id="childAge" name="childAge" required placeholder="Cth: 6 tahun">
+        </div>
+        <div class="f-row">
+          <label for="location">Lokasi Berhampiran</label>
+          <select id="location" name="location" required>
+            <option value="">Pilih lokasi</option>
+            <!-- GANTI: senarai 20+ lokasi sebenar Minda Optima -->
+            <option>[Lokasi 1 — GANTI]</option>
+            <option>[Lokasi 2 — GANTI]</option>
+            <option>[Lokasi 3 — GANTI]</option>
+            <option>Lain-lain / tidak pasti</option>
+          </select>
+        </div>
+        <div class="f-row">
+          <label for="whatsapp">No. WhatsApp Anda</label>
+          <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Cth: 0121234567">
+        </div>
+        <div class="cta-row" style="margin-top:8px">
+          <button type="submit" class="btn" style="width:100%;justify-content:center">Hantar &amp; Sambung di WhatsApp <svg width="18" height="18"><use href="#ic-whatsapp"/></svg></button>
+        </div>
+      </form>
+      <p class="form-note">Selepas hantar, anda akan dibawa terus ke WhatsApp untuk sambung perbualan dengan team kami.</p>
     </div>
 
     <div class="steps-after">
@@ -525,9 +549,6 @@
   // No. WhatsApp rasmi Minda Optima
   const WHATSAPP_NUMBER = "601158652293";
 
-  // GANTI: slug Whatsform sebenar untuk offer/landing page ni (cth: "gyt", "fmo8", dll — rujuk dashboard Whatsform anda)
-  const WHATSFORM_SLUG = "WHATSFORM_SLUG";
-
   function buildWaLink(message){
     return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
   }
@@ -537,8 +558,16 @@
   document.getElementById('footerWaBtn').href = buildWaLink(defaultMsg);
   document.getElementById('fabWaBtn').href = buildWaLink(defaultMsg);
 
-  // Registration CTA -> Whatsform (collects answers, then hands off to WhatsApp itself)
-  document.getElementById('whatsformBtn').href = "https://whatsform.com/" + WHATSFORM_SLUG;
+  // Borang sendiri dalam page -> bina mesej dari jawapan -> terus ke WhatsApp
+  document.getElementById('leadForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('parentName').value.trim();
+    const age = document.getElementById('childAge').value.trim();
+    const loc = document.getElementById('location').value;
+    const msg = "Hi Minda Optima, saya " + name + ". Anak saya berumur " + age +
+      ". Saya berminat dengan assessment percuma di kawasan " + loc + ". Boleh bantu saya?";
+    window.location.href = buildWaLink(msg);
+  });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
 
