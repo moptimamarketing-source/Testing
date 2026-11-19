@@ -1,0 +1,37 @@
+{
+  "_nota": "Fail ni selamat untuk di-commit. Tiada token di sini. Ubah ikut keperluan anda.",
+  "currency": "RM",
+  "max_cpl": 15,
+  "_nota_areas": "Padanan nama campaign/ad set kepada kawasan. Skrip cari kata kunci ni dalam nama campaign, ad set dan ad (huruf besar/kecil tidak kira). Tambah kawasan baru bila buka cawangan baru.",
+  "areas": {
+    "Ampang": [
+      "ampang"
+    ],
+    "Seri Kembangan": [
+      "seri kembangan",
+      "serikembangan",
+      "sri kembangan",
+      "kembangan"
+    ],
+    "Bandar Sri Damansara": [
+      "bandar sri damansara",
+      "sri damansara",
+      "bsd"
+    ],
+    "Shah Alam": [
+      "shah alam",
+      "shahalam"
+    ],
+    "Kajang": [
+      "kajang"
+    ]
+  },
+  "_nota_result_actions": "Keutamaan jenis hasil. Skrip ambil yang pertama dijumpai dalam setiap baris. Untuk iklan Click-to-WhatsApp, 'messaging_conversation_started_7d' yang berkaitan. Untuk lead form / WhatsForm, 'lead' atau 'onsite_conversion.lead_grouped'.",
+  "result_actions": [
+    "onsite_conversion.messaging_conversation_started_7d",
+    "onsite_conversion.lead_grouped",
+    "lead",
+    "onsite_conversion.messaging_first_reply",
+    "link_click"
+  ]
+}

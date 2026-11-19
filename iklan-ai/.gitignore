@@ -1,0 +1,21 @@
+# Kredential - JANGAN sekali-kali commit
+.env
+.env.*
+!.env.example
+*service-account*.json
+*credentials*.json
+*token*.json
+
+# Output data
+data/
+dashboard.html
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
